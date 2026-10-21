@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ChargeHub helps EV drivers discover charging stations and plan smoother journeys.">
+<title>ChargeHub — Charge smarter. Go farther.</title>
+<style>
+:root{--ink:#10231d;--muted:#61716b;--green:#147d52;--lime:#c8f36b;--paper:#f7faf5;--white:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:var(--ink);background:var(--paper)}
+a{text-decoration:none;color:inherit}.wrap{width:min(1120px,90%);margin:auto}
+nav{height:78px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:850;letter-spacing:-.8px}
+.logo{width:38px;height:38px;border-radius:12px;background:var(--green);display:grid;place-items:center;color:white;font-size:22px}
+.navlinks{display:flex;gap:30px;color:#52645c;font-size:14px;font-weight:650}
+.navbtn,.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:13px 21px;font-weight:750;font-size:14px}
+.navbtn{background:var(--ink);color:white}
+.hero{padding:76px 0 68px;display:grid;grid-template-columns:1.04fr .96fr;align-items:center;gap:40px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:#e9f5df;color:#326b3e;border-radius:999px;padding:8px 13px;font-size:12px;font-weight:800;letter-spacing:.5px;text-transform:uppercase}
+.dot{width:7px;height:7px;border-radius:50%;background:#53a94b}
+h1{font-size:clamp(44px,6vw,70px);line-height:1.02;letter-spacing:-3.8px;margin:22px 0}
+h1 span{color:var(--green)}
+.lead{font-size:18px;line-height:1.7;color:var(--muted);max-width:510px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.btn.primary{background:var(--green);color:white;padding:16px 25px}.btn.secondary{border:1px solid #d8e2da;background:white;padding:16px 25px}
+.note{font-size:12px;color:#819088;margin-top:18px}
+.visual{min-height:440px;border-radius:30px;background:linear-gradient(145deg,#153e30,#0d241e);position:relative;overflow:hidden;padding:28px;color:white;box-shadow:0 24px 60px #123b2b25}
+.visual:before{content:"";position:absolute;width:330px;height:330px;border:1px solid #ffffff25;border-radius:50%;right:-65px;top:35px;box-shadow:0 0 0 35px #ffffff09,0 0 0 75px #ffffff06}
+.visual:after{content:"";position:absolute;width:230px;height:230px;border-radius:50%;background:#c8f36b;filter:blur(85px);opacity:.22;right:20px;bottom:0}
+.maplabel{font-size:12px;color:#c3d6ca;letter-spacing:1px;text-transform:uppercase;position:relative;z-index:1}
+.route{position:absolute;left:14%;top:25%;width:75%;height:60%;z-index:1}
+.station{position:absolute;background:white;color:var(--ink);border-radius:17px;padding:14px 16px;box-shadow:0 12px 28px #0003;z-index:2}
+.station strong{display:block;font-size:13px}.station small{color:#74827a;font-size:11px}
+.station.one{top:27%;left:8%}.station.two{right:7%;top:54%}
+.pin{width:28px;height:28px;border-radius:50%;background:var(--lime);display:grid;place-items:center;color:#163c2c;margin-bottom:7px;font-size:15px}
+.mini{position:absolute;bottom:24px;left:28px;right:28px;display:flex;justify-content:space-between;align-items:center;z-index:2;color:#d8e8dd;font-size:12px}
+.mini b{font-size:18px;color:white;display:block}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding:25px 0 68px}
+.stat{border-top:1px solid #dce6dd;padding-top:19px}.stat b{font-size:25px;letter-spacing:-1px}.stat span{display:block;color:var(--muted);font-size:13px;margin-top:5px}
+.section{padding:75px 0}.section.white{background:white}
+.kicker{color:var(--green);font-size:12px;font-weight:850;text-transform:uppercase;letter-spacing:1.3px}
+h2{font-size:clamp(30px,4vw,45px);letter-spacing:-2px;line-height:1.1;margin:13px 0}
+.sub{color:var(--muted);line-height:1.7;max-width:590px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px}
+.card{background:white;border:1px solid #e6eee6;border-radius:22px;padding:25px}
+.white .card{background:var(--paper)}
+.icon{width:45px;height:45px;border-radius:14px;background:#e8f4df;display:grid;place-items:center;font-size:22px;margin-bottom:20px}
+.card h3{font-size:18px;margin:0 0 9px}.card p{color:var(--muted);font-size:14px;line-height:1.65;margin:0}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:25px;margin-top:34px}
+.stepnum{font-size:12px;color:var(--green);font-weight:850;letter-spacing:1px}
+.steps h3{margin:12px 0 8px}.steps p{color:var(--muted);line-height:1.65;font-size:14px}
+.cta{background:var(--ink);color:white;border-radius:28px;padding:48px;display:flex;align-items:center;justify-content:space-between;gap:25px}
+.cta p{color:#bdcec4;line-height:1.6;max-width:520px}.cta .btn{background:var(--lime);color:#163326;white-space:nowrap}
+footer{padding:28px 0;color:#75837b;font-size:12px;display:flex;justify-content:space-between;gap:15px}
+@media(max-width:760px){.navlinks{display:none}.hero{grid-template-columns:1fr;padding-top:48px}.visual{min-height:370px}.stats{gap:12px}.stat b{font-size:20px}.cards,.steps{grid-template-columns:1fr}.cta{padding:32px;display:block}.cta .btn{margin-top:12px}footer{display:block}footer span{display:block;margin-top:8px}h1{letter-spacing:-2.5px}}
+</style>
+</head>
+<body>
+<header class="wrap">
+<nav>
+<a class="brand" href="#"><span class="logo">⚡</span>ChargeHub</a>
+<div class="navlinks"><a href="#features">Features</a><a href="#how">How it works</a><a href="#about">About</a></div>
+<a class="navbtn" href="#get-started">Explore ChargeHub ↗</a>
+</nav>
+</header>
+<main>
+<section class="wrap hero">
+<div>
+<div class="eyebrow"><span class="dot"></span> A smarter way to go electric</div>
+<h1>Charge smarter.<br><span>Go farther.</span></h1>
+<p class="lead">Finding an EV charging station shouldn't slow you down. ChargeHub brings charging information together to help drivers discover stations and plan their journeys with confidence.</p>
+<div class="actions"><a class="btn primary" href="#how">Discover how it works ↗</a><a class="btn secondary" href="#features">Explore features</a></div>
+<div class="note">Designed to make every electric journey simpler.</div>
+</div>
+<div class="visual" aria-label="Illustration of an EV charging journey">
+<div class="maplabel">Your journey, made easier</div>
+<svg class="route" viewBox="0 0 420 300" fill="none" aria-hidden="true">
+<path d="M52 48 C120 42 110 145 200 140 S300 70 365 225" stroke="#C8F36B" stroke-width="4" stroke-linecap="round" stroke-dasharray="8 11"/>
+<circle cx="52" cy="48" r="10" fill="#C8F36B"/><circle cx="200" cy="140" r="10" fill="#C8F36B"/><circle cx="365" cy="225" r="10" fill="#C8F36B"/>
+<path d="M45 48h14M52 41v14M193 140h14M200 133v14" stroke="#153E30" stroke-width="2"/>
+</svg>
+<div class="station one"><div class="pin">⚡</div><strong>Charging point</strong><small>Find a nearby station</small></div>
+<div class="station two"><div class="pin">↗</div><strong>Next stop</strong><small>Plan your route</small></div>
+<div class="mini"><span><b>Discover</b>Stations around you</span><span><b>Plan</b>Travel with confidence</span></div>
+</div>
+</section>
+<section class="wrap stats" aria-label="Product highlights">
+<div class="stat"><b>Find</b><span>Discover charging locations</span></div>
+<div class="stat"><b>Compare</b><span>Review useful station details</span></div>
+<div class="stat"><b>Go</b><span>Plan a smoother EV journey</span></div>
+</section>
+<section class="section white" id="features">
+<div class="wrap">
+<div class="kicker">Why ChargeHub</div><h2>Less searching. More exploring.</h2>
+<p class="sub">A simple, driver-first experience that helps take the uncertainty out of finding a place to charge.</p>
+<div class="cards">
+<article class="card"><div class="icon">📍</div><h3>Discover stations</h3><p>Explore charging locations and make it easier to find a convenient place to power up.</p></article>
+<article class="card"><div class="icon">🔎</div><h3>Useful information</h3><p>See key station details in one place so you can make a more informed choice.</p></article>
+<article class="card"><div class="icon">🧭</div><h3>Plan with confidence</h3><p>Organise your stops before you set off and make your electric journey feel simpler.</p></article>
+</div>
+</div>
+</section>
+<section class="section" id="how">
+<div class="wrap">
+<div class="kicker">Simple by design</div><h2>Your next charge in three steps.</h2>
+<p class="sub">ChargeHub is designed to keep the journey straightforward, from finding a station to getting back on the road.</p>
+<div class="steps">
+<div><div class="stepnum">01 / DISCOVER</div><h3>Search your area</h3><p>Start by exploring EV charging locations around your destination or route.</p></div>
+<div><div class="stepnum">02 / CHECK</div><h3>Review the details</h3><p>Look through available station information and choose a suitable stop.</p></div>
+<div><div class="stepnum">03 / GO</div><h3>Continue your journey</h3><p>Plan your charging stop and enjoy a more prepared drive.</p></div>
+</div>
+</div>
+</section>
+<section class="wrap section" id="about">
+<div class="cta" id="get-started">
+<div><div class="kicker" style="color:#c8f36b">The road ahead is electric</div><h2>Make every charge count.</h2><p>Be part of a simpler EV experience. Explore the ChargeHub concept and help shape a more convenient way to find charging stations.</p></div>
+<a class="btn" href="#features">Explore ChargeHub ↗</a>
+</div>
+</section>
+</main>
+<footer class="wrap"><strong>⚡ ChargeHub</strong><span>Smarter charging. Smoother journeys. · Student project landing page</span></footer>
+</body>
+</html>
